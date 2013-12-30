@@ -74,19 +74,7 @@
 		<!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
 		<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
 		<script>
-				$( document ).on( "mobileinit", function() {
-					console.log("mobileinit");
-					$.getJSON("data/data.json",function(data){
-						console.log("success loading data")
-						app.cards = data.kaarten;
-						console.log(app.cards.length + "cards loaded");
-						//app.setupNavigation();
-					})
-					.fail(function() {
-						console.log( "error loading data" );
-					});
-				});
-		$(function(){
+			$(function(){
 				// Bind the swipeHandler callback function to the swipe event on div.box
 				$( "#card" ).on( "swipeleft swiperight", initRotate );
 				
