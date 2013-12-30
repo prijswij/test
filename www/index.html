@@ -142,7 +142,7 @@
 				function setupNavigation(){
 					console.log('setupNavigation')
 					$.each(cards, function(index, value){
-						$( "<li id='"+value.naam+"' data-icon="false"><a href='#'>"+value.titel+"</a></li>" ).appendTo( "#cards ul" );
+						$( "<li id='"+value.naam+"' data-icon='false'><a href='#'>"+value.titel+"</a></li>" ).appendTo( "#cards ul" );
 						var navigationItem = $("#"+value.naam+" a");
 						navigationItem.on('click touchend', function(event){
 							event.preventDefault();
