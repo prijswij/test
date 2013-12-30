@@ -6,6 +6,8 @@
 		<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
 		<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" />
+		<link rel="stylesheet" href="css/df.min.css" />
+
 		<style>
 			@media (min-width:35em){
 
@@ -34,71 +36,7 @@
 				}
 
 			}
-				
-    .container {
-/*      width: 200px;
-      height: 260px;*/
-	  width:95%;
-	  height: 95%;
-	  displa:block;
-      position: absolute;
-      margin: 0 auto 40px;
-      border: 1px solid #CCC;
-      -webkit-perspective: 800px;
-         -moz-perspective: 800px;
-           -o-perspective: 800px;
-              perspective: 800px;
-    }
 
-    #card {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      -webkit-transition: -webkit-transform 1s;
-         -moz-transition: -moz-transform 1s;
-           -o-transition: -o-transform 1s;
-              transition: transform 1s;
-      -webkit-transform-style: preserve-3d;
-         -moz-transform-style: preserve-3d;
-           -o-transform-style: preserve-3d;
-              transform-style: preserve-3d;
-    }
-
-    #card.flipped {
-      -webkit-transform: rotateY( 180deg );
-         -moz-transform: rotateY( 180deg );
-           -o-transform: rotateY( 180deg );
-              transform: rotateY( 180deg );
-    }
-
-    #card figure {
-		margin: 0;
-		display: block;
-		height: 100%;
-		width: 100%;
-		line-height: 260px;
-		color: white;
-		text-align: center;
-		font-weight: bold;
-		font-size: 140px;
-		position: absolute;
-		-webkit-backface-visibility: hidden;
-		   -moz-backface-visibility: hidden;
-		     -o-backface-visibility: hidden;
-			    backface-visibility: hidden;
-    }
-
-    #card .front {
-      background: red;
-    }
-
-    #card .back {
-      background: blue;
-      -webkit-transform: rotateY( 180deg );
-         -moz-transform: rotateY( 180deg );
-           -o-transform: rotateY( 180deg );
-              transform: rotateY( 180deg );
-    }
 		</style>
         <title>Dreamfactory Cards</title>
     </head>
@@ -108,16 +46,16 @@
 				<h2 role="heading">kaart x</h2>
 				<a href="#cards" class="jqm-navmenu-link ui-nodisc-icon ui-alt-icon ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Menu</a>
 			</div>
-			<div role="main" class="ui-content">
+			<div role="main" class="ui-content main">
 				<section class="container">
-					<div id="card" data-rotateY="0">
-						<figure class="front">1</figure>
-						<figure class="back">2</figure>
+					<div class="card" id="card" data-rotateY="0">
+						<figure class="cardFront"></figure>
+						<figure class="cardBack"></figure>
 					</div>
 				</section>
 			</div>
 			<div data-role="footer" data-position="fixed" role="banner"><h2 role="heading">footer</h2></div>
-			<div data-role="panel" data-position="left" data-display="overlay" id="cards">
+			<div data-role="panel" data-position="left" data-display="overlay" class="cardsNavigation" id="cards">
 				<ul data-role="listview">
 					<li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
 					<li data-icon="false"><a href="#">Apple</a></li>
@@ -131,42 +69,57 @@
 			</div><!-- /panel -->
 		</div>
 
-		<script type="text/javascript" src="cordova.js"></script>
+		<!--<script type="text/javascript" src="cordova.js"></script>-->
 		<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 		<!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
 		<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
 		<script>
-			$(function(){
+				$( document ).on( "mobileinit", function() {
+					console.log("mobileinit");
+					$.getJSON("data/data.json",function(data){
+						console.log("success loading data")
+						app.cards = data.kaarten;
+						console.log(app.cards.length + "cards loaded");
+						//app.setupNavigation();
+					})
+					.fail(function() {
+						console.log( "error loading data" );
+					});
+				});
+		$(function(){
 				// Bind the swipeHandler callback function to the swipe event on div.box
-				$( "#card" ).on( "swipeleft", swipeLeftHandler );
-				$( "#card" ).on( "swiperight", swipeRightHandler );
+				$( "#card" ).on( "swipeleft swiperight", initRotate );
+				
+				$(".cardFront").css({'background-image':'url(kaarten/kaart1V.png)'});
+				$(".cardBack").css({'background-image':'url(kaarten/kaart1A.png)'});
 
+				$.getJSON("data/data.json",function(data){
+					console.log("success loading data")
+					app.cards = data.kaarten;
+					console.log(app.cards.length + "cards loaded");
+					//app.setupNavigation();
+				})
+				.fail(function() {
+					console.log( "error loading data" );
+				});
+
+				
 				// Callback function references the event target and adds the 'swipe' class to it
-				function swipeLeftHandler( event ){
-					console.log("swipeLeft");
-					var $card = $("#card");
-					degree = $card.data('rotatey') - 180;
-					$card.data('rotatey', degree);
-					$card.css({
-						'-webkit-transform': 'rotateY( '+degree+'deg )',
-						'-moz-transform': 'rotateY( '+degree+'deg )',
-						'-o-transform': 'rotateY( '+degree+'deg )',
-						'transform': 'rotateY( '+degree+'deg )'
-					})
-					//$( "#card" ).toggleClass( "flipped" );
+				function initRotate( event ){
+					console.log("initRotate");
+					var $card = $("#card"),
+						direction = event.type === "swipeleft" ? -180 : 180;
+					degrees = $card.data('rotatey') + direction;
+					$card.data('rotatey', degrees);
+					rotateCard(card, degrees);
 				}
-				function swipeRightHandler( event ){
-					console.log("swipeLeft");
-					var $card = $("#card");
-					degree = $card.data('rotatey') + 180;
-					$card.data('rotatey', degree);
-					$card.css({
-						'-webkit-transform': 'rotateY( '+degree+'deg )',
-						'-moz-transform': 'rotateY( '+degree+'deg )',
-						'-o-transform': 'rotateY( '+degree+'deg )',
-						'transform': 'rotateY( '+degree+'deg )'
+				function rotateCard(card, degrees){
+					$(card).css({
+						'-webkit-transform': 'rotateY( '+degrees+'deg )',
+						'-moz-transform': 'rotateY( '+degrees+'deg )',
+						'-o-transform': 'rotateY( '+degrees+'deg )',
+						'transform': 'rotateY( '+degrees+'deg )'
 					})
-					//$( "#card" ).toggleClass( "flipped" );
 				}
 			});
 		</script>
