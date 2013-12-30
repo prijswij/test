@@ -45,7 +45,8 @@
 			<div data-role="header" data-position="fixed" role="banner">
 				<h2 role="heading">kaart x</h2>
 				<a href="#cards" class="jqm-navmenu-link ui-nodisc-icon ui-alt-icon ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Menu</a>
-			</div>
+				<a href="#debug" class="jqm-navmenu-link ui-nodisc-icon ui-alt-icon ui-btn-right ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Debug</a>
+				</div>
 			<div role="main" class="ui-content main">
 				<section class="container">
 					<div class="card" id="card" data-rotateY="0">
@@ -66,6 +67,12 @@
 					<li data-icon="false"><a href="#">Orange</a></li>
 				</ul>
 
+			</div>
+			<div data-role="panel" data-position="right" data-display="overlay" id="debug">
+				<ul data-role="listview">
+					<li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+				</ul>
+
 			</div><!-- /panel -->
 		</div>
 
@@ -74,6 +81,11 @@
 		<!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
 		<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
 		<script>
+			console.log = function(text){
+				$("#debug ul").append('<li data-icon="false"><a href="#" class="ui-btn">'+text+'</a></li>');
+				$("#debug").listview( "refresh" );
+			}
+			
 			$(function(){
 				// Bind the swipeHandler callback function to the swipe event on div.box
 				$( "#card" ).on( "swipeleft swiperight", initRotate );
