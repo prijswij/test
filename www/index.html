@@ -58,7 +58,7 @@
 			<div data-role="footer" data-position="fixed" role="banner"><h2 role="heading">footer</h2></div>
 			<div data-role="panel" data-position="left" data-display="overlay" class="cardsNavigation" id="cards">
 				<ul data-role="listview">
-					<li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+					<li data-icon="delete"><a href="#" data-rel="close">Close navigation</a></li>
 					<!--<li data-icon="false"><a href="#">Apple</a></li>
 					<li data-icon="false"><a href="#">Banana</a></li>
 					<li data-icon="false"><a href="#">Cherry</a></li>
@@ -70,7 +70,7 @@
 			</div>
 			<div data-role="panel" data-position="right" data-display="overlay" id="debug">
 				<ul data-role="listview">
-					<li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+					<li data-icon="delete"><a href="#" data-rel="close">Close debug</a></li>
 				</ul>
 
 			</div><!-- /panel -->
@@ -152,6 +152,7 @@
 						navigationItem.data("cardInfo",value);
 						navigationItem.data("cardIndex", index);
 					});
+					showCard(cards[0]);
 				}
 			});
 		</script>
