@@ -1,0 +1,18 @@
+{
+	"kaarten"	: [
+		{
+			"naam" 			: "kaart1",
+			"titel" 		: "Opdrachtgever gezocht / Inhoudsopgave",
+			"imageVoor"		: "kaarten/kaart1V.png",
+			"imageAchter"	: "kaarten/kaart1A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart2",
+			"titel" 		: "3 adviesrollen",
+			"imageVoor"		: "kaarten/kaart2V.png",
+			"imageAchter"	: "kaarten/kaart2A.png",
+			"omschrijving"	: "Uitvoerder, expert en partner"
+		}
+	]
+}
