@@ -43,7 +43,7 @@
     <body>
 		<div data-role="page" class="ui-responsive-panel">		
 			<div data-role="header" data-position="fixed" role="banner">
-				<h2 role="heading">kaart x</h2>
+				<h2 role="heading" id="contentTitle">kaart x</h2>
 				<a href="#cards" class="jqm-navmenu-link ui-nodisc-icon ui-alt-icon ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Menu</a>
 				<a href="#debug" class="jqm-navmenu-link ui-nodisc-icon ui-alt-icon ui-btn-right ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Debug</a>
 				</div>
@@ -59,12 +59,12 @@
 			<div data-role="panel" data-position="left" data-display="overlay" class="cardsNavigation" id="cards">
 				<ul data-role="listview">
 					<li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
-					<li data-icon="false"><a href="#">Apple</a></li>
+					<!--<li data-icon="false"><a href="#">Apple</a></li>
 					<li data-icon="false"><a href="#">Banana</a></li>
 					<li data-icon="false"><a href="#">Cherry</a></li>
 					<li data-icon="false"><a href="#">Cranberry</a></li>
 					<li data-icon="false"><a href="#">Grape</a></li>
-					<li data-icon="false"><a href="#">Orange</a></li>
+					<li data-icon="false"><a href="#">Orange</a></li>-->
 				</ul>
 
 			</div>
@@ -81,7 +81,7 @@
 		<!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
 		<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
 		<script>
-			//cards = {};
+			cards = {};
 			
 			console.log = function(text){
 				$("#debug ul").append('<li data-icon="false"><a href="#">'+text+'</a></li>');
@@ -92,8 +92,8 @@
 				// Bind the swipeHandler callback function to the swipe event on div.box
 				$( "#card" ).on( "swipeleft swiperight", initRotate );
 				
-				$(".cardFront").css({'background-image':'url(kaarten/kaart1V.png)'});
-				$(".cardBack").css({'background-image':'url(kaarten/kaart1A.png)'});
+			//	$(".cardFront").css({'background-image':'url(kaarten/kaart1V.png)'});
+			//	$(".cardBack").css({'background-image':'url(kaarten/kaart1A.png)'});
 
 				$.getJSON("data/data.json",function(data){
 					console.log("success loading data")
@@ -126,6 +126,31 @@
 						'-o-transform': 'rotateY( '+degrees+'deg )',
 						'transform': 'rotateY( '+degrees+'deg )'
 					})
+				}
+				function showCard(card){
+					console.log('showCard')
+//					$("body").removeClass("largeScreen");
+//					$(".flip-container").removeClass("hover");
+					
+					$(".cardFront").css({"background-image": "url("+card.imageVoor+")"});
+					$(".cardBack").css({"background-image": "url("+card.imageAchter+")"});
+					$("#contentTitle").html(card.titel);
+					
+				};
+
+				function setupNavigation(){
+					console.log('setupNavigation')
+					$.each(cards, function(index, value){
+						$( "<li id='"+value.naam+"' data-icon="false"><a href='#'>"+value.titel+"</a></li>" ).appendTo( "#cards ul" );
+						var navigationItem = $("#"+value.naam+" a");
+						navigationItem.on('click touchend', function(event){
+							event.preventDefault();
+							var $this = $(this);
+							showCard(cards[$this.data("cardIndex")]);
+						});
+						navigationItem.data("cardInfo",value);
+						navigationItem.data("cardIndex", index);
+					});
 				}
 			});
 		</script>
