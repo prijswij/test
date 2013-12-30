@@ -100,6 +100,7 @@
 					try{
 						console.log(data.kaarten.length + "cards loaded");
 						cards = data.kaarten;
+						setupNavigation();
 					} catch(err){
 						console.log("error : " + err);
 					}
