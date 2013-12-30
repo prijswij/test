@@ -36,9 +36,12 @@
 			}
 				
     .container {
-      width: 200px;
-      height: 260px;
-      position: relative;
+/*      width: 200px;
+      height: 260px;*/
+	  width:95%;
+	  height: 95%;
+	  displa:block;
+      position: absolute;
       margin: 0 auto 40px;
       border: 1px solid #CCC;
       -webkit-perspective: 800px;
@@ -107,7 +110,7 @@
 			</div>
 			<div role="main" class="ui-content">
 				<section class="container">
-					<div id="card">
+					<div id="card" data-rotateY="0">
 						<figure class="front">1</figure>
 						<figure class="back">2</figure>
 					</div>
@@ -135,12 +138,35 @@
 		<script>
 			$(function(){
 				// Bind the swipeHandler callback function to the swipe event on div.box
-				$( "#card" ).on( "swipeleft swiperight", swipeHandler );
+				$( "#card" ).on( "swipeleft", swipeLeftHandler );
+				$( "#card" ).on( "swiperight", swipeRightHandler );
 
 				// Callback function references the event target and adds the 'swipe' class to it
-				function swipeHandler( event ){
-					console.log(event.target);
-					$( "#card" ).toggleClass( "flipped" );
+				function swipeLeftHandler( event ){
+					console.log("swipeLeft");
+					var $card = $("#card");
+					degree = $card.data('rotatey') - 180;
+					$card.data('rotatey', degree);
+					$card.css({
+						'-webkit-transform': 'rotateY( '+degree+'deg )',
+						'-moz-transform': 'rotateY( '+degree+'deg )',
+						'-o-transform': 'rotateY( '+degree+'deg )',
+						'transform': 'rotateY( '+degree+'deg )'
+					})
+					//$( "#card" ).toggleClass( "flipped" );
+				}
+				function swipeRightHandler( event ){
+					console.log("swipeLeft");
+					var $card = $("#card");
+					degree = $card.data('rotatey') + 180;
+					$card.data('rotatey', degree);
+					$card.css({
+						'-webkit-transform': 'rotateY( '+degree+'deg )',
+						'-moz-transform': 'rotateY( '+degree+'deg )',
+						'-o-transform': 'rotateY( '+degree+'deg )',
+						'transform': 'rotateY( '+degree+'deg )'
+					})
+					//$( "#card" ).toggleClass( "flipped" );
 				}
 			});
 		</script>
