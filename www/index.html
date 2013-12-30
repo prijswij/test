@@ -85,7 +85,7 @@
 			
 			console.log = function(text){
 				$("#debug ul").append('<li data-icon="false"><a href="#">'+text+'</a></li>');
-				$("#debug").listview( "refresh" );
+				//$("#debug").listview( "refresh" );
 			}
 			
 			$(function(){
@@ -95,7 +95,7 @@
 				$(".cardFront").css({'background-image':'url(kaarten/kaart1V.png)'});
 				$(".cardBack").css({'background-image':'url(kaarten/kaart1A.png)'});
 
-			/*	$.getJSON("data/data.json",function(data){
+				$.getJSON("data/data.json",function(data){
 					console.log("success loading data")
 					try{
 						console.log(data.kaarten.length + "cards loaded");
@@ -107,7 +107,7 @@
 				})
 				.fail(function() {
 					console.log( "error loading data" );
-				}); */
+				}); 
 
 				
 				// Callback function references the event target and adds the 'swipe' class to it
