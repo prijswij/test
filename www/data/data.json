@@ -111,13 +111,6 @@
 			"imageVoor"		: "kaarten/kaart16V.png",
 			"imageAchter"	: "kaarten/kaart16A.png",
 			"omschrijving"	: "Acquireren als onderdeel van je werk"
-		},
-		{
-			"naam" 			: "kaart17",
-			"titel" 		: "Tips in de offertefase",
-			"imageVoor"		: "kaarten/kaart17V.png",
-			"imageAchter"	: "kaarten/kaart17A.png",
-			"omschrijving"	: "Uitvoerder, expert en partner"
 		}
 	]
 }
