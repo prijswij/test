@@ -9,9 +9,114 @@
 		},
 		{
 			"naam" 			: "kaart2",
-			"titel" 		: "3 adviesrollen",
+			"titel" 		: "Wat is je (advies)rol",
 			"imageVoor"		: "kaarten/kaart2V.png",
 			"imageAchter"	: "kaarten/kaart2A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart3",
+			"titel" 		: "Trechter van 3",
+			"imageVoor"		: "kaarten/kaart3V.png",
+			"imageAchter"	: "kaarten/kaart3A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart4",
+			"titel" 		: "Koopsignalen",
+			"imageVoor"		: "kaarten/kaart4V.png",
+			"imageAchter"	: "kaarten/kaart4A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart5",
+			"titel" 		: "Aanbevelingen vragen",
+			"imageVoor"		: "kaarten/kaart5V.png",
+			"imageAchter"	: "kaarten/kaart5A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart6",
+			"titel" 		: "Netwerken",
+			"imageVoor"		: "kaarten/kaart6V.png",
+			"imageAchter"	: "kaarten/kaart6A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart7",
+			"titel" 		: "Netwerkafspraak maken",
+			"imageVoor"		: "kaarten/kaart7V.png",
+			"imageAchter"	: "kaarten/kaart7A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart8",
+			"titel" 		: "Van koffie naar zaken",
+			"imageVoor"		: "kaarten/kaart8V.png",
+			"imageAchter"	: "kaarten/kaart8A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart9",
+			"titel" 		: "Luciferverhaal",
+			"imageVoor"		: "kaarten/kaart9V.png",
+			"imageAchter"	: "kaarten/kaart9A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart10",
+			"titel" 		: "Ervaringsverhalen",
+			"imageVoor"		: "kaarten/kaart10V.png",
+			"imageAchter"	: "kaarten/kaart10A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart11",
+			"titel" 		: "Structuur in het gesprek",
+			"imageVoor"		: "kaarten/kaart11V.png",
+			"imageAchter"	: "kaarten/kaart11A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart12",
+			"titel" 		: "Chunken - overzicht",
+			"imageVoor"		: "kaarten/kaart12V.png",
+			"imageAchter"	: "kaarten/kaart12A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart13",
+			"titel" 		: "Checklist U-model",
+			"imageVoor"		: "kaarten/kaart13V.png",
+			"imageAchter"	: "kaarten/kaart13A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart14",
+			"titel" 		: "Benoemen wat is - tips",
+			"imageVoor"		: "kaarten/kaart14V.png",
+			"imageAchter"	: "kaarten/kaart14A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart15",
+			"titel" 		: "Tips bij de budgethorde",
+			"imageVoor"		: "kaarten/kaart15V.png",
+			"imageAchter"	: "kaarten/kaart15A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart16",
+			"titel" 		: "Meer handige zinnen",
+			"imageVoor"		: "kaarten/kaart16V.png",
+			"imageAchter"	: "kaarten/kaart16A.png",
+			"omschrijving"	: "Acquireren als onderdeel van je werk"
+		},
+		{
+			"naam" 			: "kaart17",
+			"titel" 		: "Tips in de offertefase",
+			"imageVoor"		: "kaarten/kaart17V.png",
+			"imageAchter"	: "kaarten/kaart17A.png",
 			"omschrijving"	: "Uitvoerder, expert en partner"
 		}
 	]

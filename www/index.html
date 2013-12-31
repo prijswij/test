@@ -84,8 +84,8 @@
 			cards = {};
 			
 			console.log = function(text){
-				$("#debug ul").append('<li data-icon="false"><a href="#">'+text+'</a></li>');
-				//$("#debug").listview( "refresh" );
+				$("#debug ul").append('<li data-icon="false">'+text+'</li>');
+				$("#debug ul").listview( "refresh" );
 			}
 			
 			$(function(){
@@ -152,7 +152,8 @@
 						navigationItem.data("cardInfo",value);
 						navigationItem.data("cardIndex", index);
 					});
-					showCard(cards[0]);
+					$("#cards ul").listview( "refresh" );
+					showCard(cards[1]);
 				}
 			});
 		</script>
