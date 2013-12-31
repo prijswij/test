@@ -36,7 +36,30 @@
 				}
 
 			}
-
+			
+			.ui-panel.ui-panel-open {
+				position:fixed;
+				bottom: 0px;
+			}
+			 
+			.ui-panel .ui-panel-inner {
+				height: 100%;
+				overflow-y: auto;
+			}
+			::-webkit-scrollbar {
+				width: 6px;
+				background: transparent;
+			}
+			::-webkit-scrollbar-track {
+				background: rgba(128,128,128,.25); 
+			}
+			 
+			::-webkit-scrollbar-thumb {
+				background: rgba(64,64,64,.25);
+				width: 4px;
+				margin: 1px;
+				border-radius: 2px; 
+			}
 		</style>
         <title>Dreamfactory Cards</title>
     </head>
@@ -56,7 +79,7 @@
 				</section>
 			</div>
 			<div data-role="footer" data-position="fixed" role="banner"><h2 role="heading">footer</h2></div>
-			<div data-role="panel" data-position="left" data-display="overlay" class="cardsNavigation" id="cards">
+			<div data-role="panel" data-position-fixed="true" data-position="left" data-display="overlay" class="cardsNavigation" id="cards">
 				<ul data-role="listview">
 					<li data-icon="delete"><a href="#" data-rel="close">Close navigation</a></li>
 					<!--<li data-icon="false"><a href="#">Apple</a></li>
@@ -68,7 +91,7 @@
 				</ul>
 
 			</div>
-			<div data-role="panel" data-position="right" data-display="overlay" id="debug">
+			<div data-role="panel" data-position-fixed="true" data-position="right" data-display="overlay" id="debug">
 				<ul data-role="listview">
 					<li data-icon="delete"><a href="#" data-rel="close">Close debug</a></li>
 				</ul>
@@ -153,6 +176,7 @@
 						navigationItem.data("cardIndex", index);
 					});
 					$("#cards ul").listview( "refresh" );
+					$("#cards").trigger( "updatelayout" );
 					showCard(cards[1]);
 				}
 			});
