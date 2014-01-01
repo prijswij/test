@@ -144,6 +144,7 @@
 						// Get the filename of the previous page that we stored in the data-prev attribute
 						prev = $( this ).jqmData( "prev" );
 					// Check if we did set the data-next attribute
+					console.log(next , ", ", prev);
 					if ( next ) {
 						$( document ).on( "swipeleft", page, function() {
 							console.log('swipeleft : nextCard');
@@ -227,7 +228,7 @@
 						addCardlinkToNavigation(value);
 						prevCardId = value.naam;
 					});
-					$.mobile.changePage( "#"+cards[0].naam );
+					setTimeout( function(){$.mobile.changePage( "#"+cards[0].naam );}, 2500);
 				};
 				function addCardlinkToNavigation(card){
 					console.log('addCardlinkToNavigation')
