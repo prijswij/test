@@ -152,7 +152,7 @@
 						});
 					}
 					// The same for the previous page (we set data-dom-cache="true" so there is no need to prefetch)
-					if ( prev ) {
+					if ( typeof(prev)!='undefined' ) {
 						$( document ).on( "swiperight", page, function() {
 							console.log('swiperight : previousCard');
 							$.mobile.changePage( "#"+prev , { reverse: true } );
