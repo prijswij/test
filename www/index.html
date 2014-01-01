@@ -234,7 +234,7 @@
 					console.log('addCardlinkToNavigation')
 					//$.each(cards, function(index, value){
 					$( "<li data-icon='false'><a href='#"+card.naam+"' data-transition='fade'>"+card.titel+"</a></li>" ).appendTo( "#cards ul" );
-					var navigationItem = $("a[href='#"+card.naam+"'");
+					var navigationItem = $("a[href='#"+card.naam+"']");
 
 					$("#cards ul").listview( "refresh" );
 					//$('[data-role=page]').trigger('pagecreate');
