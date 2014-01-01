@@ -93,17 +93,13 @@
     <body>
 		<div data-role="page" class="ui-panel-responsive" data-transition='slide'>		
 			<div data-role="header" data-position="fixed" data-fullscreen="true" data-tap-toggle="false" role="banner">
-				<h1 role="heading" aria-level="1">??</h1>
+				<h1 role="heading" aria-level="1">Opdrachtgever gezocht</h1>
 				<a href="#cards" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">Menu</a>
 				<a href="#debug" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">debug</a>
 				</div>
 			<div role="main" class="ui-content main">
-				<section class="container">
-					<div class="card" id="card" data-rotateY="0">
-						<figure class="cardFront"></figure>
-						<figure class="cardBack"></figure>
-					</div>
-				</section>
+				<h1>Opdrachtgever gezocht</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae vehicula nulla. Aliquam ut gravida enim, in ultricies sapien. Duis quis luctus nisi. Nullam posuere in libero ac mattis. Mauris sit amet convallis odio. Pellentesque nec malesuada nisi. Donec nibh orci, vehicula at turpis a, sagittis aliquet erat. Praesent porta, dolor at elementum pulvinar, leo quam tincidunt purus, in tempus libero orci et libero. Phasellus aliquam rutrum consectetur. Suspendisse quis volutpat libero, quis suscipit purus. Nam tempor felis velit, eu porttitor tellus aliquet a.</p>
 			</div>
 			<div data-role="footer" data-position="fixed" role="banner"><h2 role="heading">footer</h2></div>
 		</div>
@@ -231,6 +227,7 @@
 						addCardlinkToNavigation(value);
 						prevCardId = value.naam;
 					});
+					$.mobile.changePage( "#"+cards[0].naam );
 				};
 				function addCardlinkToNavigation(card){
 					console.log('addCardlinkToNavigation')
@@ -241,7 +238,7 @@
 					$("#cards ul").listview( "refresh" );
 					//$('[data-role=page]').trigger('pagecreate');
 					$("#cards").trigger( "updatelayout" );
-					$("#cards ul").listview( "refresh" );
+					//$("#cards ul").listview( "refresh" );
 					//showCard(cards[1]);
 				};
 				
