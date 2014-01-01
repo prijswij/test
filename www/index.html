@@ -107,7 +107,7 @@
 			</div>
 			<div data-role="footer" data-position="fixed" role="banner"><h2 role="heading">footer</h2></div>
 		</div>
-		<div data-role="panel" data-position-fixed="true" data-position="left" data-display="reveal" class="cardsNavigation" id="cards">
+		<div data-role="panel" data-position-fixed="true" data-position="left" data-display="reveal" data-theme="a" data-dismissible="false" class="cardsNavigation" id="cards">
 			<ul data-role="listview">
 				<li data-icon="delete"><a href="#" data-rel="close">Close navigation</a></li>
 				<!--<li data-icon="false"><a href="#">Apple</a></li>
@@ -119,7 +119,7 @@
 			</ul>
 
 		</div>
-		<div data-role="panel" data-position-fixed="true" data-display="overlay" data-position="right" id="debug">
+		<div data-role="panel" data-position-fixed="true" data-display="overlay" data-position="right" data-theme="a" id="debug">
 			<ul data-role="listview">
 				<li data-icon="delete"><a href="#" data-rel="close">Close debug</a></li>
 			</ul>
@@ -139,7 +139,32 @@
 			
 			$(function(){
 				$.mobile.defaultPageTransition = "slide";
-				// Bind the swipeHandler callback function to the swipe event on div.box
+				// setup slide on swipe
+				$( document ).on( "pagecreate", "[data-role='page']", function() {
+					console.log('pagecreate');
+					var page = "#" + $( this ).attr( "id" ),
+						// Get the filename of the next page that we stored in the data-next attribute
+						next = $( this ).jqmData( "next" ),
+						// Get the filename of the previous page that we stored in the data-prev attribute
+						prev = $( this ).jqmData( "prev" );
+					// Check if we did set the data-next attribute
+					if ( next ) {
+						$( document ).on( "swipeleft", page, function() {
+							console.log('swipeleft : nextCard');
+							$.mobile.changePage( "#"+next );
+						});
+					}
+					// The same for the previous page (we set data-dom-cache="true" so there is no need to prefetch)
+					if ( prev ) {
+						$( document ).on( "swiperight", page, function() {
+							console.log('swiperight : previousCard');
+							$.mobile.changePage( "#"+prev , { reverse: true } );
+						});
+
+					}
+				});					
+
+			// Bind the swipeHandler callback function to the swipe event on div.box
 			//	$( "#card" ).on( "swipeleft swiperight", initRotate );
 				
 			//	$(".cardFront").css({'background-image':'url(kaarten/kaart1V.png)'});
@@ -183,7 +208,7 @@
 					})
 				}
 				function showCard(card){
-					console.log('showCard')
+					console.log('showCard');
 //					$("body").removeClass("largeScreen");
 //					$(".flip-container").removeClass("hover");
 					
@@ -194,9 +219,10 @@
 				};
 
 				function processCardData(){
+					console.log('processCardData')
 					var prevCardId = "", nextCardId = "";
 					$.each(cards, function(index, value){
-						if(index != cards.length){
+						if(index != cards.length-1){
 							nextCardId = cards[index+1].naam;
 						} else {
 							nextCardId = "";
@@ -213,12 +239,14 @@
 					var navigationItem = $("a[href='#"+card.naam+"'");
 
 					$("#cards ul").listview( "refresh" );
+					//$('[data-role=page]').trigger('pagecreate');
 					$("#cards").trigger( "updatelayout" );
+					$("#cards ul").listview( "refresh" );
 					//showCard(cards[1]);
 				};
 				
 				function addCardPage(card, navigationPrevNext){
-				
+					console.log('addCardPage')
 					var prev = navigationPrevNext.prev != "" ? " data-prev='"+navigationPrevNext.prev+"'" : "";
 					var next = navigationPrevNext.next != "" ? " data-next='"+navigationPrevNext.next+"'" : "";
 					// Prepare your page structure
@@ -230,32 +258,7 @@
 					// Append the new page into pageContainer
 					newPage.appendTo($.mobile.pageContainer);
 					
-				}
-
-				$( document ).on( "pageinit", "[data-role='page']", function() {
-					var page = "#" + $( this ).attr( "id" ),
-						// Get the filename of the next page that we stored in the data-next attribute
-						next = $( this ).jqmData( "next" ),
-						// Get the filename of the previous page that we stored in the data-prev attribute
-						prev = $( this ).jqmData( "prev" );
-					
-					// Check if we did set the data-next attribute
-					if ( next ) {
-						$( document ).on( "swipeleft", page, function() {
-							$.mobile.changePage( "#"+next );
-						});
-					}
-
-					// The same for the previous page (we set data-dom-cache="true" so there is no need to prefetch)
-					if ( prev ) {
-						$( document ).on( "swiperight", page, function() {
-							$.mobile.changePage( "#"+prev , { reverse: true } );
-						});
-
-					}
-
-				});
-    
+				};    
 			});
 	
 		</script>
