@@ -9,32 +9,40 @@
 		<link rel="stylesheet" href="css/df.min.css" />
 
 		<style>
-			@media (min-width:35em){
+			@media ( min-width: 35em ) {
 
 				/* wrap on wide viewports once open */
 
-				.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-left,
-				.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-left,
-				.ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-left,
-				.ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-left {
+				.ui-panel-page-content-open.ui-panel-page-content-position-left {
 					margin-right: 17em;
 				}
-				.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-right,
-				.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-right,
-				.ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-right,
-				.ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-right {
+				.ui-panel-page-content-open.ui-panel-page-content-position-right {
 					margin-left: 17em;
 				}
-				.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push,
-				.ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal {
+				.ui-panel-page-content-open {
 					width: auto;
 				}
 
 				/* disable "dismiss" on wide viewports */
-				.ui-responsive-panel .ui-panel-dismiss-display-push {
+				.ui-panel-dismiss {
 					display: none;
 				}
 
+				/* same as the above but for panels with display mode "push" only */
+
+				.ui-panel-page-content-open.ui-panel-page-content-position-left.ui-panel-page-content-display-push {
+					margin-right: 17em;
+				}
+				.ui-panel-page-content-open.ui-panel-page-content-position-right.ui-panel-page-content-display-push {
+					margin-left: 17em;
+				}
+				.ui-panel-page-content-open.ui-panel-page-content-display-push {
+					width: auto;
+				}
+
+				.ui-panel-dismiss-display-push {
+					display: none;
+				}
 			}
 			
 			.ui-panel.ui-panel-open {
@@ -43,9 +51,28 @@
 			}
 			 
 			.ui-panel .ui-panel-inner {
-				height: 100%;
+				position:absolute;
+				top:0px;
+				bottom:0px;
+				left:0px;
+				right:0px;
 				overflow-y: auto;
+				overflow-x:hidden;
 			}
+			
+			.card-container{
+				position: absolute;
+				top: 60px;
+				bottom: 20px;
+				left: 20px;
+				right: 20px;
+				text-align: center;
+			}
+			
+			.card-container img{
+				box-shadow: 0px 5px 10px rgba(64,64,64,.5);
+			}
+			
 			::-webkit-scrollbar {
 				width: 6px;
 				background: transparent;
@@ -64,11 +91,11 @@
         <title>Dreamfactory Cards</title>
     </head>
     <body>
-		<div data-role="page" class="ui-responsive-panel">		
-			<div data-role="header" data-position="fixed" role="banner">
-				<h2 role="heading" id="contentTitle">kaart x</h2>
-				<a href="#cards" class="jqm-navmenu-link ui-nodisc-icon ui-alt-icon ui-btn-left ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Menu</a>
-				<a href="#debug" class="jqm-navmenu-link ui-nodisc-icon ui-alt-icon ui-btn-right ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all" data-role="button" role="button">Debug</a>
+		<div data-role="page" class="ui-panel-responsive" data-transition='slide'>		
+			<div data-role="header" data-position="fixed" data-fullscreen="true" data-tap-toggle="false" role="banner">
+				<h1 role="heading" aria-level="1">??</h1>
+				<a href="#cards" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">Menu</a>
+				<a href="#debug" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">debug</a>
 				</div>
 			<div role="main" class="ui-content main">
 				<section class="container">
@@ -79,26 +106,25 @@
 				</section>
 			</div>
 			<div data-role="footer" data-position="fixed" role="banner"><h2 role="heading">footer</h2></div>
-			<div data-role="panel" data-position-fixed="true" data-position="left" data-display="overlay" class="cardsNavigation" id="cards">
-				<ul data-role="listview">
-					<li data-icon="delete"><a href="#" data-rel="close">Close navigation</a></li>
-					<!--<li data-icon="false"><a href="#">Apple</a></li>
-					<li data-icon="false"><a href="#">Banana</a></li>
-					<li data-icon="false"><a href="#">Cherry</a></li>
-					<li data-icon="false"><a href="#">Cranberry</a></li>
-					<li data-icon="false"><a href="#">Grape</a></li>
-					<li data-icon="false"><a href="#">Orange</a></li>-->
-				</ul>
-
-			</div>
-			<div data-role="panel" data-position-fixed="true" data-position="right" data-display="overlay" id="debug">
-				<ul data-role="listview">
-					<li data-icon="delete"><a href="#" data-rel="close">Close debug</a></li>
-				</ul>
-
-			</div><!-- /panel -->
 		</div>
+		<div data-role="panel" data-position-fixed="true" data-position="left" data-display="reveal" class="cardsNavigation" id="cards">
+			<ul data-role="listview">
+				<li data-icon="delete"><a href="#" data-rel="close">Close navigation</a></li>
+				<!--<li data-icon="false"><a href="#">Apple</a></li>
+				<li data-icon="false"><a href="#">Banana</a></li>
+				<li data-icon="false"><a href="#">Cherry</a></li>
+				<li data-icon="false"><a href="#">Cranberry</a></li>
+				<li data-icon="false"><a href="#">Grape</a></li>
+				<li data-icon="false"><a href="#">Orange</a></li>-->
+			</ul>
 
+		</div>
+		<div data-role="panel" data-position-fixed="true" data-display="overlay" data-position="right" id="debug">
+			<ul data-role="listview">
+				<li data-icon="delete"><a href="#" data-rel="close">Close debug</a></li>
+			</ul>
+
+		</div><!-- /panel -->
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 		<!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
@@ -106,24 +132,29 @@
 		<script>
 			cards = {};
 			
-			console.log = function(text){
+			/*console.log = function(text){
 				$("#debug ul").append('<li data-icon="false">'+text+'</li>');
 				$("#debug ul").listview( "refresh" );
-			}
+			}*/
 			
 			$(function(){
+				$.mobile.defaultPageTransition = "slide";
 				// Bind the swipeHandler callback function to the swipe event on div.box
-				$( "#card" ).on( "swipeleft swiperight", initRotate );
+			//	$( "#card" ).on( "swipeleft swiperight", initRotate );
 				
 			//	$(".cardFront").css({'background-image':'url(kaarten/kaart1V.png)'});
 			//	$(".cardBack").css({'background-image':'url(kaarten/kaart1A.png)'});
 
+				$('[data-role="panel"]').panel();
+				$('[data-role="panel"] ul').listview();
+			
 				$.getJSON("data/data.json",function(data){
 					console.log("success loading data")
 					try{
 						console.log(data.kaarten.length + "cards loaded");
 						cards = data.kaarten;
-						setupNavigation();
+						//setupNavigation();
+						processCardData();
 					} catch(err){
 						console.log("error : " + err);
 					}
@@ -162,24 +193,71 @@
 					
 				};
 
-				function setupNavigation(){
-					console.log('setupNavigation')
+				function processCardData(){
+					var prevCardId = "", nextCardId = "";
 					$.each(cards, function(index, value){
-						$( "<li id='"+value.naam+"' data-icon='false'><a href='#'>"+value.titel+"</a></li>" ).appendTo( "#cards ul" );
-						var navigationItem = $("#"+value.naam+" a");
-						navigationItem.on('click touchend', function(event){
-							event.preventDefault();
-							var $this = $(this);
-							showCard(cards[$this.data("cardIndex")]);
-						});
-						navigationItem.data("cardInfo",value);
-						navigationItem.data("cardIndex", index);
+						if(index != cards.length){
+							nextCardId = cards[index+1].naam;
+						} else {
+							nextCardId = "";
+						}
+						addCardPage(value, {prev : prevCardId, next : nextCardId});
+						addCardlinkToNavigation(value);
+						prevCardId = value.naam;
 					});
+				};
+				function addCardlinkToNavigation(card){
+					console.log('addCardlinkToNavigation')
+					//$.each(cards, function(index, value){
+					$( "<li data-icon='false'><a href='#"+card.naam+"' data-transition='fade'>"+card.titel+"</a></li>" ).appendTo( "#cards ul" );
+					var navigationItem = $("a[href='#"+card.naam+"'");
+
 					$("#cards ul").listview( "refresh" );
 					$("#cards").trigger( "updatelayout" );
-					showCard(cards[1]);
+					//showCard(cards[1]);
+				};
+				
+				function addCardPage(card, navigationPrevNext){
+				
+					var prev = navigationPrevNext.prev != "" ? " data-prev='"+navigationPrevNext.prev+"'" : "";
+					var next = navigationPrevNext.next != "" ? " data-next='"+navigationPrevNext.next+"'" : "";
+					// Prepare your page structure
+					var newPage = $("<div data-role='page' data-transition='slide' id='"+card.naam+"'"+prev+next+"><div data-role=header data-position=fixed aria-level='1'><h1>"+card.titel+"</h1>"+
+						'<a href="#cards" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">Menu</a>'+
+						'<a href="#debug" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">debug</a></div>'+
+						"<div data-role=content><div class='card-container'><img src='"+card.imageVoor+"' height='100%' /></div></div></div>");
+
+					// Append the new page into pageContainer
+					newPage.appendTo($.mobile.pageContainer);
+					
 				}
+
+				$( document ).on( "pageinit", "[data-role='page']", function() {
+					var page = "#" + $( this ).attr( "id" ),
+						// Get the filename of the next page that we stored in the data-next attribute
+						next = $( this ).jqmData( "next" ),
+						// Get the filename of the previous page that we stored in the data-prev attribute
+						prev = $( this ).jqmData( "prev" );
+					
+					// Check if we did set the data-next attribute
+					if ( next ) {
+						$( document ).on( "swipeleft", page, function() {
+							$.mobile.changePage( "#"+next );
+						});
+					}
+
+					// The same for the previous page (we set data-dom-cache="true" so there is no need to prefetch)
+					if ( prev ) {
+						$( document ).on( "swiperight", page, function() {
+							$.mobile.changePage( "#"+prev , { reverse: true } );
+						});
+
+					}
+
+				});
+    
 			});
+	
 		</script>
     </body>
 </html>
