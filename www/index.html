@@ -2,9 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
+        <!-- <meta name="format-detection" content="telephone=no" /> -->
 		<!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
 		<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" />
 		<link rel="stylesheet" href="css/df.min.css" />
 
@@ -87,17 +88,20 @@
 				margin: 1px;
 				border-radius: 2px; 
 			}
+			#hdrtest{
+				position:fixed;
+			}
 		</style>
         <title>Dreamfactory Cards</title>
     </head>
     <body>
-		<div data-role="page" class="ui-panel-responsive" data-transition='slide'>		
+		<div data-role="page" class="ui-panel-responsive" data-transition='flow'>		
 			<div data-role="header" data-position="fixed" data-fullscreen="true" data-tap-toggle="false" role="banner">
 				<h1 role="heading" aria-level="1">Opdrachtgever gezocht</h1>
 				<a href="#cards" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">Menu</a>
-				<a href="#debug" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">debug</a>
+				<a href="#debug" data-role="button" data-icon="info" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">debug</a>
 				</div>
-			<div role="main" class="ui-content main">
+			<div role="main" data-role="content">
 				<h1>Opdrachtgever gezocht</h1>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae vehicula nulla. Aliquam ut gravida enim, in ultricies sapien. Duis quis luctus nisi. Nullam posuere in libero ac mattis. Mauris sit amet convallis odio. Pellentesque nec malesuada nisi. Donec nibh orci, vehicula at turpis a, sagittis aliquet erat. Praesent porta, dolor at elementum pulvinar, leo quam tincidunt purus, in tempus libero orci et libero. Phasellus aliquam rutrum consectetur. Suspendisse quis volutpat libero, quis suscipit purus. Nam tempor felis velit, eu porttitor tellus aliquet a.</p>
 			</div>
@@ -148,14 +152,16 @@
 					if ( next ) {
 						$( document ).on( "swipeleft", page, function() {
 							console.log('swipeleft : nextCard');
-							$.mobile.changePage( "#"+next );
+							$.mobile.pageContainer.pagecontainer("change", "#"+next );
+							//$.mobile.changePage( "#"+next );
 						});
 					}
 					// The same for the previous page (we set data-dom-cache="true" so there is no need to prefetch)
-					if ( typeof(prev)!='undefined' ) {
+					if ( prev ) {
 						$( document ).on( "swiperight", page, function() {
 							console.log('swiperight : previousCard');
-							$.mobile.changePage( "#"+prev , { reverse: true } );
+							$.mobile.pageContainer.pagecontainer("change", "#"+prev , { reverse: true } );
+							//$.mobile.changePage( "#"+prev , { reverse: true } );
 						});
 
 					}
@@ -228,7 +234,7 @@
 						addCardlinkToNavigation(value);
 						prevCardId = value.naam;
 					});
-					setTimeout( function(){$.mobile.changePage( "#"+cards[0].naam );}, 2500);
+					//setTimeout( function(){$.mobile.changePage( "#"+cards[0].naam );}, 2500);
 				};
 				function addCardlinkToNavigation(card){
 					console.log('addCardlinkToNavigation')
@@ -248,15 +254,18 @@
 					var prev = navigationPrevNext.prev != "" ? " data-prev='"+navigationPrevNext.prev+"'" : "";
 					var next = navigationPrevNext.next != "" ? " data-next='"+navigationPrevNext.next+"'" : "";
 					// Prepare your page structure
-					var newPage = $("<div data-role='page' data-transition='slide' id='"+card.naam+"'"+prev+next+"><div data-role=header data-position=fixed aria-level='1'><h1>"+card.titel+"</h1>"+
+					var newPage = $("<div data-role='page' data-dom-cache=true data-transition='slide' id='"+card.naam+"'"+prev+next+">"+
+						"<div data-role=header data-position=fixed data-transition=none data-fullscreen=true data-tap-toggle=false role=banner aria-level='1'><h1>"+card.titel+"</h1>"+
 						'<a href="#cards" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">Menu</a>'+
-						'<a href="#debug" data-role="button" data-icon="bars" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">debug</a></div>'+
-						"<div data-role=content><div class='card-container'><img src='"+card.imageVoor+"' height='100%' /></div></div></div>");
+						'<a href="#debug" data-role="button" data-icon="info" data-iconpos="notext" class="ui-btn-icon-notext" data-iconshadow="false" role="button">debug</a></div>'+
+						"<div role=main data-role=content><div class='card-container'><img src='"+card.imageVoor+"' height='100%' /></div></div></div>");
 
 					// Append the new page into pageContainer
-					newPage.appendTo($.mobile.pageContainer);
+					newPage.appendTo($.mobile.pageContainer).trigger( "updatelayout" );
+					newPage.trigger("updatelayout");
 					
-				};    
+				};
+				
 			});
 	
 		</script>
